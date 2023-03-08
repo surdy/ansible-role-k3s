@@ -3,10 +3,10 @@
     ~/k3s_install.sh >> ~/k3s_install.log
   args:
     chdir: "~"
-    creates: /var/lib/rancher/k3s/server/node-token
+    creates: "{{ k3s_data_dir }}/server/node-token"
 
 - name: Get node token
-  command: cat /var/lib/rancher/k3s/server/node-token
+  command: cat "{{ k3s_data_dir }}"/server/node-token
   changed_when: false
   register: node_token_output
 
@@ -25,7 +25,7 @@
     path: "~{{ ansible_user }}/.kube"
     state: directory
     owner: "{{ ansible_user }}"
-    mode: "u=rwx,g=rx,o="
+    mode: 750
 
 - name: Copy config file to user home directory
   copy:

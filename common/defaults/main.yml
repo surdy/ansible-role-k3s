@@ -1,0 +1,20 @@
+---
+### Role defaults
+
+# Version of k3s to install
+# Can be "latest" which will install latest stable release
+# or can be a specific version like v1.25.1+k3s1
+#k3s_version: latest
+
+# Location of where we would like to put k3s binary
+#k3s_bin_dir: /usr/local/bin
+
+# Data dir
+k3s_data_dir: /var/lib/rancher/k3s
+
+# Enable/disable optional components
+# "traefik", "servicelb", "metrics-server", "local-storage"
+#k3s_disable_components: []
+
+#k3s_install_ceph: false
+#k3s_install_loghorn: false
