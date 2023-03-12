@@ -1,3 +1,13 @@
+- name: Make k3s config file dir exists
+  file:
+    path: "{{ k3s_config_file | dirname }}"
+    state: directory
+
+- name: Generate K3s Server config
+  template:
+    src: config.yaml.j2
+    dest: "{{ k3s_config_file }}"
+
 - name: Install K3s on control plane
   shell: >-
     ~/k3s_install.sh >> ~/k3s_install.log

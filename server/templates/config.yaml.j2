@@ -1,0 +1,6 @@
+{% if k3s_disable_components|length > 0 %}
+disable:
+{% for disabled_component in k3s_disable_components %}
+  - {{ disabled_component }}
+{% endfor %}
+{% endif %}
