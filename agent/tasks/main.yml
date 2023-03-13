@@ -1,8 +1,16 @@
+- name: Make sure k3s config file dir exists
+  file:
+    path: "{{ k3s_config_file | dirname }}"
+    state: directory
+
+- name: Generate K3s Server config
+  template:
+    src: config.yaml.j2
+    dest: "{{ k3s_config_file }}"
+
 - name: Install K3s on worker nodes
   shell: >-
-    K3S_URL=https://"{{ groups['k3s_server'][0] }}":6443
-    K3S_TOKEN="{{ hostvars[groups['k3s_server'][0]]['node_token'] }}"
-    ~/k3s_install.sh >> ~/k3s_install.log
+    ~/k3s_install.sh agent >> ~/k3s_install.log
   args:
     chdir: "~"
     creates: /var/lib/rancher/k3s/agent/kubelet.kubeconfig
