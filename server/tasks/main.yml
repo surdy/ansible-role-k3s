@@ -1,4 +1,4 @@
-- name: Make k3s config file dir exists
+- name: Make sure k3s config file dir exists
   file:
     path: "{{ k3s_config_file | dirname }}"
     state: directory
